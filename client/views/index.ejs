@@ -1,0 +1,29 @@
+<%- include("partials/header.ejs") %>
+  <%- include("partials/navbar.ejs") %>
+
+  <a href="/register" class="btn btn-primary m-3">
+    Registrar
+  </a>
+
+  <% data.forEach((persona)=>{%>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <%= persona.name %>
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>Id: <%= persona.id %> </p>
+            <%= persona.history %>
+          </div>
+        </div>
+      <form action="/find" method="POST">
+        <input type="hidden" name="id" value="<%= persona.id %>">
+        <button type="submit" class="btn btn-secondary btn-sm m-3">Vizualizar</button>
+      </form>
+      </div>
+    </div>
+  <%});%>
+<%- include("partials/footer.ejs") %>
